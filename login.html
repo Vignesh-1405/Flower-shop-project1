@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="log2.css">
+    <title>Login</title>
+</head>
+<body>
+    <form  class="form-container" onsubmit="loginfun(event)">
+        <h1>Login</h1>
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+        <small id="usernameError" style="color:#ff6b6b;"></small>
+        <label for="Password">Password</label>
+        <input type="password" id="Password" required>
+        <button type="submit">Login</button>
+        <a href="#">forget password ?</a>
+        <a href="register.html">New user / Create a account</a>
+    </form>
+<script>
+    
+
+    function loginfun(event){
+        event.preventDefault(); // Prevent form submission
+        let passcheck=document.getElementById("Password").value.trim();
+        let mailcheck=document.getElementById("email").value.trim();
+
+        let users = JSON.parse(localStorage.getItem("users") || "[]");
+
+        let validUser = users.find(user => user.email === mailcheck && user.password === passcheck);
+
+        if (validUser) {
+            alert("Login successful!");
+            window.location.href = "index.html";
+            // Redirect to another page or perform other actions
+        } else {
+            alert("Invalid email or password.");
+        }
+    }
+</script>
+
+
+</body>
+</html>
