@@ -1,0 +1,181 @@
+/* ---------------------------- */
+/* 🌸 Cart Page CSS - Horizontal Layout */
+/* ---------------------------- */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+}
+header #toggler {
+    display: none;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: #fff;
+    box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,0.1);
+}
+
+header .logo {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+header .logo span{
+    
+    color: #e84393;
+    
+}
+
+header .navbar a {
+    font-size: 2rem;
+    margin-left: 2rem;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+header .navbar a.active,
+header .navbar a:hover {
+    color: #e84393;
+}
+
+.cart {
+    padding: 5rem 9%;
+}
+
+.cart .heading {
+    text-align: center;
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 3rem;
+}
+
+.cart .heading span {
+    color: #e84393;
+}
+
+.cart-container {
+    display: flex;
+    flex-wrap: nowrap;  /* Horizontal scroll if items overflow */
+    overflow-x: auto;
+    gap: 2rem;
+}
+
+.cart-container .box {
+    flex: 0 0 300px;  /* Fixed width for horizontal layout */
+    border: 0.1rem solid rgba(0,0,0,0.1);
+    border-radius: 1rem;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+}
+
+.cart-container .box:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.15);
+}
+
+/* .cart-container .box img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+} */
+ .cart-container .box img {
+    width: 100%;
+    height: 220px;      /* fixed height */
+    object-fit: contain; /* show full image without cropping */
+    object-position: center; /* center the image */
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    background: #fff;    /* optional, for white background behind image */
+    display: block;
+}
+
+
+.cart-container .content {
+    padding: 1rem;
+}
+
+.cart-container .content h3 {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.cart-container .content .price {
+    font-size: 1.4rem;
+    color: #e84393;
+    margin-bottom: 0.5rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    background: #e84393;
+    color: #fff;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 0.3rem 0.2rem;
+    transition: 0.3s;
+}
+header input[type="checkbox"] {
+    display: none;
+}
+.btn:hover {
+    background: #ff6090;
+}
+
+.remove {
+    background: #555;
+}
+
+.remove:hover {
+    background: #0bed6d;
+}
+
+.total-box {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    font-size: 1.6rem;
+    color: #333;
+}
+
+/* 📱 Mobile */
+@media(max-width:600px){
+    .cart-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+
+    .cart-container .box {
+        flex: 0 0 80%;
+    }
+     
+}
+
+/* 💻 Tablet */
+@media(min-width:601px) and (max-width:900px){
+    .cart-container .box {
+        flex: 0 0 45%;
+    }
+}
+
+/* 🖥️ Desktop */
+@media(min-width:901px){
+    .cart-container .box {
+        flex: 0 0 300px;
+    }
+    
+}

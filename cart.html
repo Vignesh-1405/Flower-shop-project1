@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Cart</title>
+  <link rel="stylesheet" href="cart.css"> <!-- reuse the same CSS -->
+  <!-- For Font Awesome 4 -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+<!-- OR For Font Awesome 5 -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header>
+    <a href="index.html" class="logo">Flower<span>.</span></a>
+
+   
+
+    <!-- <nav class="navbar">
+      <a href="index.html" >Home</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="cart.html" class="active">Cart</a>
+    </nav> -->
+    <nav class="navbar">
+  <a href="index.html"><i class="fas fa-home"></i></a>
+  <a href="wishlist.html"><i class="fas fa-heart"></i></a>
+  <a href="cart.html" class="active"><i class="fas fa-shopping-cart"></i></a>
+</nav>
+  </header>
+
+  <!-- Cart Section -->
+  <section class="cart">
+    <h1 class="heading">My <span>Cart</span></h1>
+
+    <div class="cart-container" id="cartContainer">
+      <!-- Cart items will appear here -->
+    </div>
+
+    <div class="total-box" id="cartEmpty">
+      <h3>Your cart is empty 🛒</h3>
+      <a href="index.html" class="btn">Back to Shop</a>
+    </div>
+  </section>
+
+  <script>
+    // Load cart items from localStorage
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const container = document.getElementById("cartContainer");
+    const emptyBox = document.getElementById("cartEmpty");
+
+    // Display cart items
+    function displayCart() {
+      container.innerHTML = "";
+      if (cart.length === 0) {
+        emptyBox.style.display = "block";
+        return;
+      }
+      emptyBox.style.display = "none";
+
+      cart.forEach((item, index) => {
+        const box = document.createElement("div");
+        box.classList.add("box");
+        box.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <div class="content">
+            <h3>${item.name}</h3>
+            <div class="price">₹${item.price.toLocaleString('en-IN')}</div>
+            <a href="#" class="btn remove" onclick="removeItem(${index})">Remove</a>
+            <a href="#" class="btn" onclick="moveToWishlist(${index})">Move to Wishlist</a>
+          </div>
+        `;
+        container.appendChild(box);
+      });
+    }
+
+    // Remove item from cart
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    // Move item to wishlist
+    function moveToWishlist(index) {
+      let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      wishlist.push(cart[index]);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      removeItem(index);
+      alert("Moved to Wishlist 💖");
+    }
+
+    displayCart();
+  </script>
+</body>
+</html>
